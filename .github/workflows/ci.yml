@@ -1,0 +1,73 @@
+name: CI Quality Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # ----------------------------------------------------------------
+  # Job 1: Python バックエンド品質ゲート
+  # ----------------------------------------------------------------
+  python-quality-gate:
+    name: Python Quality Gate (ruff / mypy / pytest)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build frontend SPA assets
+        run: |
+          cd frontend
+          npm ci
+          npm test
+          npm run build
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
+      - name: Install Python dependencies (dev extras)
+        run: uv sync --extra dev
+
+      - name: Lint (ruff)
+        run: uv run ruff check src tests
+
+      - name: Static type check (mypy strict — src only)
+        # tests/ は pytest でカバー。mypy は本番ドメインモデルの型整合性を守る。
+        run: uv run mypy src
+
+      - name: Test suite (pytest)
+        run: uv run pytest --tb=short -q
+
+  # ----------------------------------------------------------------
+  # Job 2: Antigravity Review Loop Plugin テストスイート
+  # ----------------------------------------------------------------
+  plugin-quality-gate:
+    name: Plugin Quality Gate (antigravity-review-loop)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify Antigravity Review Loop Plugin Test Suite
+        run: |
+          cd .agents/plugins/antigravity-review-loop
+          npm ci
+          npm test

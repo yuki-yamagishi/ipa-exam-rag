@@ -1,0 +1,35 @@
+{
+  "name": "antigravity-review-loop",
+  "version": "1.0.0",
+  "description": "Autonomous self-healing PR review loop & quality governance plugin for Google Antigravity",
+  "type": "module",
+  "main": "state/loopState.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuki-yamagishi/antigravity-review-loop.git"
+  },
+  "keywords": [
+    "antigravity",
+    "agentic-ai",
+    "code-review",
+    "self-healing",
+    "quality-governance",
+    "peer-review",
+    "subagents"
+  ],
+  "author": "Yuki Yamagishi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuki-yamagishi/antigravity-review-loop/issues"
+  },
+  "homepage": "https://github.com/yuki-yamagishi/antigravity-review-loop#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

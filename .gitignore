@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Build outputs
+dist/
+build/
+out/
+
+# Testing & Coverage
+coverage/
+*.lcov
+
+# Antigravity runtime state (ephemeral)
+.agents/plugins/antigravity-review-loop/state/loop_state.json
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Databases & SQLite practice history (personal answer history)
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+data/*.sqlite
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python & uv
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Scratch & temporary workspace
+scratch/
+
+# OS Files
+.DS_Store
+Thumbs.db

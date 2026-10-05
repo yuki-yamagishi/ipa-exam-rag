@@ -1,0 +1,3 @@
+[submodule ".agents/plugins/antigravity-review-loop"]
+	path = .agents/plugins/antigravity-review-loop
+	url = https://github.com/yuki-yamagishi/antigravity-review-loop.git

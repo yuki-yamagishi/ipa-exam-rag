@@ -1,0 +1,35 @@
+.git
+.gitignore
+.gitattributes
+
+# Virtual Environments & Caches
+.venv/
+venv/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Frontend dependencies & build artifacts
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# Local databases & persistent storage
+data/*.db
+storage/
+*.sqlite3
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Markdown documentation (optional in image, but docs/ may be excluded to save space)
+docs/

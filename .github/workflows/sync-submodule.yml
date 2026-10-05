@@ -1,0 +1,59 @@
+name: Sync Submodule (antigravity-review-loop)
+
+on:
+  # 1. 外部リポジトリ（antigravity-review-loop）からの Webhook / API 通知
+  repository_dispatch:
+    types: [antigravity-review-loop-updated, update-submodule]
+
+  # 2. GitHub Actions UI / CLI からの手動ワンクリック実行
+  workflow_dispatch:
+
+  # 3. 定期同期（毎日 00:00 UTC / 日本時間 09:00 に最新追従チェック）
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-submodule:
+    name: Sync and Validate antigravity-review-loop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update submodule to remote HEAD
+        run: |
+          git submodule update --remote --merge .agents/plugins/antigravity-review-loop
+
+      - name: Verify plugin test suite (Quality Gate)
+        run: |
+          cd .agents/plugins/antigravity-review-loop
+          npm ci
+          npm test
+
+      - name: Commit and push changes if updated
+        run: |
+          STATUS=$(git status --porcelain .agents/plugins/antigravity-review-loop)
+          if [ -n "$STATUS" ]; then
+            SUBMODULE_COMMIT=$(git -C .agents/plugins/antigravity-review-loop rev-parse --short HEAD)
+            echo "Submodule updated to commit: ${SUBMODULE_COMMIT}"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .agents/plugins/antigravity-review-loop
+            git commit -m "chore(submodule): update antigravity-review-loop to ${SUBMODULE_COMMIT}"
+            git push origin main
+          else
+            echo "Submodule is already at the latest commit. No changes to commit."
+          fi

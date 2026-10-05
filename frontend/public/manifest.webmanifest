@@ -1,0 +1,18 @@
+{
+  "name": "IPA Exam RAG - 高度過去問道場 & AI対話",
+  "short_name": "IPA道場",
+  "description": "情報処理技術者試験（高度AM2等）の過去問道場とGemini/Qdrantによる自律学習RAGシステム",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

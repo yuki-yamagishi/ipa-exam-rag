@@ -1,0 +1,24 @@
+{
+  "name": "ipa-exam-rag",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "IPA Examination Retrieval-Augmented Generation (RAG) System",
+  "scripts": {
+    "build:frontend": "npm.cmd --prefix frontend run build",
+    "typecheck:frontend": "npm.cmd --prefix frontend run typecheck",
+    "check:terms": "uv run python scripts/check_forbidden_terms.py",
+    "lint": "uv run ruff check . && uv run python scripts/check_forbidden_terms.py",
+    "format:check": "uv run ruff format --check .",
+    "test": "uv run pytest",
+    "check": "uv run ruff check . && uv run ruff format --check . && uv run python scripts/check_forbidden_terms.py && npm.cmd --prefix frontend run test && npm.cmd --prefix frontend run build && uv run pytest"
+  },
+  "keywords": [
+    "ipa",
+    "rag",
+    "exam",
+    "antigravity"
+  ],
+  "author": "Yuki Yamagishi",
+  "license": "MIT"
+}
