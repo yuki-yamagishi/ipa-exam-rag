@@ -10,6 +10,7 @@ import {
   Tag,
 } from 'lucide-react';
 import type { LearnedInsight } from '../../types';
+import { formatQuestionSourceFromId } from '../../utils/attribution';
 
 interface InsightDetailModalProps {
   insight: LearnedInsight | null;
@@ -72,7 +73,7 @@ export const InsightDetailModal: React.FC<InsightDetailModalProps> = ({
             <div className="flex items-center gap-2 flex-wrap">
               <span className="inline-flex items-center gap-1 rounded-lg bg-slate-800 px-2.5 py-1 text-xs font-semibold text-slate-300 border border-slate-700">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>出典: {insight.source_question_id}</span>
+                <span>{formatQuestionSourceFromId(insight.source_question_id)}</span>
               </span>
 
               {insight.is_verified && (

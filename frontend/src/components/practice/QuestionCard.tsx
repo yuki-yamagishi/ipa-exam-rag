@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tag, Calendar, HelpCircle } from 'lucide-react';
 import type { ExamQuestion } from '../../types';
+import { formatQuestionSource } from '../../utils/attribution';
 
 interface QuestionCardProps {
   question: ExamQuestion;
@@ -42,6 +43,11 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       {/* Question Text */}
       <div className="mt-4 text-slate-100 text-sm sm:text-base leading-relaxed tracking-wide whitespace-pre-wrap select-text font-normal">
         {question.question_text}
+      </div>
+
+      {/* Official IPA Source Attribution */}
+      <div className="mt-4 pt-3 border-t border-slate-750/60 text-[11px] text-slate-400 select-text font-normal">
+        {formatQuestionSource(question)}
       </div>
     </div>
   );
