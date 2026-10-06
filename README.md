@@ -77,7 +77,7 @@ cd frontend
 # 依存関係のインストール
 npm install
 
-# 単体テスト実行 (45 件全量テスト)
+# 単体テスト実行
 npm test
 
 # 型検査
