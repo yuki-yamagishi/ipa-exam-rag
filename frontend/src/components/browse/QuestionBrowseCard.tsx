@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, ChevronDown, ChevronUp, CheckCircle2, BookOpen } from 'lucide-react';
 import type { ExamQuestion } from '../../types';
+import { formatQuestionSource } from '../../utils/attribution';
 
 interface QuestionBrowseCardProps {
   question: ExamQuestion;
@@ -76,6 +77,11 @@ export const QuestionBrowseCard: React.FC<QuestionBrowseCardProps> = ({ question
           </div>
         </div>
       )}
+
+      {/* Official IPA Source Attribution */}
+      <div className="text-[11px] text-slate-400 select-text font-normal pt-1">
+        {formatQuestionSource(question)}
+      </div>
 
       {/* 5. Actions: Explanation Toggle & Ask AI */}
       <div className="flex items-center justify-between gap-3 pt-2 border-t border-slate-700/50">

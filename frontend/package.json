@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/api/client.test.ts src/components/practice/practice.test.ts src/components/browse/browse.test.ts src/components/chat/chat.test.ts src/components/insights/insights.test.ts src/components/analytics/analytics.test.ts src/components/settings/settings.test.ts src/components/auth/authGuard.test.ts src/components/common/markdownRenderer.test.ts"
+    "test": "node --experimental-strip-types --test src/utils/attribution.test.ts src/api/client.test.ts src/components/practice/practice.test.ts src/components/browse/browse.test.ts src/components/chat/chat.test.ts src/components/insights/insights.test.ts src/components/analytics/analytics.test.ts src/components/settings/settings.test.ts src/components/auth/authGuard.test.ts src/components/common/markdownRenderer.test.ts",
+    "test:run": "npm test"
   },
   "dependencies": {
     "clsx": "^2.1.1",
